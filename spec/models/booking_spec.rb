@@ -13,8 +13,6 @@ RSpec.describe Booking, type: :model do
     it { should validate_uniqueness_of(:ticket_number) }
 
     it { should validate_presence_of(:reservation_reference) }
-    it { should validate_uniqueness_of(:reservation_reference) }
-
     it { should validate_presence_of(:reservation_date) }
     it { should validate_presence_of(:reservation_time) }
     it { should validate_presence_of(:price) }

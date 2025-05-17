@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_16_062254) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_17_090834) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,7 +28,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_062254) do
     t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_bookings_on_buyer_id"
     t.index ["performance_id"], name: "index_bookings_on_performance_id"
-    t.index ["reservation_reference"], name: "index_bookings_on_reservation_reference", unique: true
+    t.index ["reservation_reference"], name: "index_bookings_on_reservation_reference"
     t.index ["ticket_number"], name: "index_bookings_on_ticket_number", unique: true
   end
 
@@ -46,6 +46,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_062254) do
     t.index ["email"], name: "index_buyers_on_email", unique: true
   end
 
+  create_table "import_jobs", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.integer "processed_rows"
+    t.integer "total_rows"
+    t.text "error_log"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "performances", force: :cascade do |t|
     t.integer "external_id"
     t.bigint "show_id", null: false
@@ -60,6 +69,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_062254) do
     t.index ["show_id"], name: "index_performances_on_show_id"
   end
 
+  create_table "raw_import_rows", force: :cascade do |t|
+    t.bigint "import_job_id", null: false
+    t.jsonb "data", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["import_job_id"], name: "index_raw_import_rows_on_import_job_id"
+  end
+
   create_table "shows", force: :cascade do |t|
     t.integer "external_id"
     t.string "title"
@@ -71,4 +88,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_062254) do
   add_foreign_key "bookings", "buyers"
   add_foreign_key "bookings", "performances"
   add_foreign_key "performances", "shows"
+  add_foreign_key "raw_import_rows", "import_jobs"
 end

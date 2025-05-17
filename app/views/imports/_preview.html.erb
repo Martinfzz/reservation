@@ -1,0 +1,32 @@
+<h3><%= t("imports.checking_csv_columns") %></h3>
+
+<%= form_with url: import_imports_path, method: :post, local: false do %>
+  <input type="hidden" name="file_path" value="<%= tempfile_path %>">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t("imports.expected_name")%></th>
+        <th><%= t("imports.corresponding_csv_column")%></th>
+        <th><%= t("imports.correction")%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% expected_columns.each do |db_column, label| %>
+        <% match = csv_headers.find { |h| h == label } %>
+        <tr>
+          <td><%= label %></td>
+          <td><%= match ? "✅ #{match}" : t("imports.not_founded") %></td>
+          <td>
+            <%= select_tag "mapping[#{db_column}]", options_for_select(csv_headers, match), include_blank: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= submit_tag t("imports.start_import"), class: "btn btn-success" %>
+<% end %>
+
+<br>
+<%= link_to t("app_common.back"), new_import_path, data: { turbo_frame: "csv_preview" } %>

@@ -1,0 +1,15 @@
+fr:
+  app_common:
+    back: "Retour"
+  imports:
+    checking_csv_columns: "Vérification des colonnes CSV"
+    csv_file_import: "Importer un fichier CSV"
+    preview: "Prévisualiser"
+    expected_name: "Nom attendu"
+    corresponding_csv_column: "Colonne CSV correspondante"
+    correction: "Correction"
+    not_founded: "❌ Non trouvé"
+    start_import: "Lancer l'import"
+    missing_file: "Fichier manquant"
+    missing_fields: "Tous les champs doivent être remplis."
+    import_started: "Importation lancée. Elle sera traitée en arrière-plan."
