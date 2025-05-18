@@ -51,6 +51,7 @@ group :development, :test do
   gem "brakeman", require: false
   gem "pry"
   gem "rspec-rails", "~> 6.0"
+  gem "rails-controller-testing"
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
