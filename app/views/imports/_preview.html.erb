@@ -1,32 +1,33 @@
-<h3><%= t("imports.checking_csv_columns") %></h3>
+<h3 class="preview-title"><%= t("imports.checking_csv_columns") %></h3>
 
-<%= form_with url: import_imports_path, method: :post, local: false do %>
+<%= form_with url: import_imports_path, method: :post, local: false, html: { class: "preview-form" } do %>
   <input type="hidden" name="file_path" value="<%= tempfile_path %>">
 
-  <table class="table">
+  <table class="table import-table">
     <thead>
       <tr>
-        <th><%= t("imports.expected_name")%></th>
-        <th><%= t("imports.corresponding_csv_column")%></th>
-        <th><%= t("imports.correction")%></th>
+        <th class="table-header"><%= t("imports.expected_name") %></th>
+        <th class="table-header"><%= t("imports.corresponding_csv_column") %></th>
+        <th class="table-header"><%= t("imports.correction") %></th>
       </tr>
     </thead>
     <tbody>
       <% expected_columns.each do |db_column, label| %>
         <% match = csv_headers.find { |h| h == label } %>
-        <tr>
-          <td><%= label %></td>
-          <td><%= match ? "✅ #{match}" : t("imports.not_founded") %></td>
-          <td>
-            <%= select_tag "mapping[#{db_column}]", options_for_select(csv_headers, match), include_blank: true %>
+        <tr class="table-row">
+          <td class="table-cell expected-name"><%= label %></td>
+          <td class="table-cell csv-match"><%= match ? "✅ #{match}" : t("imports.not_founded") %></td>
+          <td class="table-cell correction-select">
+            <%= select_tag "mapping[#{db_column}]", options_for_select(csv_headers, match), include_blank: true, class: "form-select" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <%= submit_tag t("imports.start_import"), class: "btn btn-success" %>
+  <%= submit_tag t("imports.start_import"), class: "btn btn-success preview-submit-btn" %>
 <% end %>
 
 <br>
-<%= link_to t("app_common.back"), new_import_path, data: { turbo_frame: "csv_preview" } %>
+
+<%= link_to t("app_common.back"), new_import_path, data: { turbo_frame: "csv_preview" }, class: "btn btn-secondary back-btn" %>

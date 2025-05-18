@@ -1,4 +1,4 @@
-<%= form_with url: preview_imports_path, method: :post, local: true do |f| %>
-  <%= f.file_field :csv_file, required: true, accept: '.csv' %>
-  <%= f.submit t("imports.preview"), class: "btn btn-primary" %>
+<%= form_with url: preview_imports_path, method: :post, local: true, html: { class: "csv-upload-form" } do |f| %>
+  <%= f.file_field :csv_file, required: true, accept: '.csv', class: "form-control file-input" %>
+  <%= f.submit t("imports.preview"), class: "btn btn-primary preview-btn" %>
 <% end %>

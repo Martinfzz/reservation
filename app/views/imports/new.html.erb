@@ -1,19 +1,19 @@
+<%= link_to t("imports.go_to_dashboard"), dashboards_show_path, class: "btn btn-primary mb-4 import-dashboard-btn" %>
+
 <% if notice.present? %>
-  <div class="alert alert-success">
+  <div class="alert alert-success import-notice mt-2">
     <%= notice %>
   </div>
 <% end %>
 
 <% if alert.present? %>
-  <div class="alert alert-danger">
+  <div class="alert alert-danger import-alert mt-2">
     <%= alert %>
   </div>
 <% end %>
 
-<h2><%= t("imports.csv_file_import") %></h2>
+<h2 class="import-title"><%= t("imports.csv_file_import") %></h2>
 
-<turbo-frame id="csv_preview">
+<turbo-frame id="csv_preview" class="csv-preview-frame">
   <%= render partial: "form" %>
 </turbo-frame>
-
-<%= link_to t("imports.go_to_dashboard"), dashboards_show_path, class: "btn btn-primary mt-4" %>
