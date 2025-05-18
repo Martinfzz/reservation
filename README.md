@@ -1,24 +1,46 @@
-# README
+# CSV File Import Application - Reservations
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application allows importing CSV files containing reservation lists with information about the buyer, event, and pricing.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- **CSV File Import**  
+  A dedicated page lets users select and upload a CSV file.
 
-* System dependencies
+- **Column Matching System**  
+  A column matching feature ensures uniform data import regardless of the original CSV file structure.
 
-* Configuration
+- **Background Processing with Sidekiq**  
+  Data import is handled as a background job using Sidekiq, allowing large files to be processed without blocking the user interface.
 
-* Database creation
+- **Intermediate Table for Import**  
+  A temporary table stores raw CSV data to facilitate and speed up the import process.
 
-* Database initialization
+- **Dashboard with Filters**  
+  A second page acts as a dashboard where users can filter reservations by event and view associated data.
 
-* How to run the test suite
+## How to get started
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Clone the repository
 
-* Deployment instructions
+2. Install dependencies
 
-* ...
+`bundle install`
+
+3. Set up the database
+
+`rails db:create db:migrate`
+
+4. Start Sidekiq
+
+`bundle exec sidekiq`
+
+5. Start the server
+
+`rails server`
+
+## Tests
+
+Tests have been added. You can run them with the following command:
+
+`rspec`
