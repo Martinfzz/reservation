@@ -1,6 +1,17 @@
 fr:
   app_common:
     back: "Retour"
+  dashboard:
+    title: "Tableau de bord"
+    select_show: "Choisir un spectacle"
+    all_shows: "Tous les spectacles"
+    filter: "Filtrer"
+    reservation_count: "Nombre de réservations"
+    unique_buyers_count: "Nombre d'acheteurs uniques"
+    average_buyers_age: "Âge moyen des acheteurs"
+    average_show_price: "Prix moyen du spectacle"
+    back_to_import: "Retour à l'importation"
+    years: "%{age} ans"
   imports:
     checking_csv_columns: "Vérification des colonnes CSV"
     csv_file_import: "Importer un fichier CSV"
@@ -13,3 +24,4 @@ fr:
     missing_file: "Fichier manquant"
     missing_fields: "Tous les champs doivent être remplis."
     import_started: "Importation lancée. Elle sera traitée en arrière-plan."
+    go_to_dashboard: "Aller au tableau de bord"

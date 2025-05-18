@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :show do
-    external_id { SecureRandom.uuid }
+    external_id { Faker::Number.unique.number(digits: 5) }
     title       { "Quartett" }
   end
 end

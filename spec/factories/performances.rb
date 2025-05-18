@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :performance do
     association :show
-    external_id { SecureRandom.uuid }
+    external_id { Faker::Number.unique.number(digits: 5) }
     title { "Le roi Lear" }
     start_date { Date.today }
     start_time { Time.now }

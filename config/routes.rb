@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
   resources :import_jobs, only: [ :update ]
+  get "dashboards/show"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
