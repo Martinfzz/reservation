@@ -19,6 +19,13 @@ This application allows importing CSV files containing reservation lists with in
 - **Dashboard with Filters**  
   A second page acts as a dashboard where users can filter reservations by event and view associated data.
 
+## Deployment
+
+The application has been deployed and is available online at:  
+[https://reservation-app.martinforget.fr/](https://reservation-app.martinforget.fr/)  
+
+Feel free to access it and test the import and dashboard features.
+
 ## How to get started
 
 1. Clone the repository
