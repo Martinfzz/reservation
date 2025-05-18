@@ -1,25 +1,37 @@
-<h2><%= t("dashboard.title") %></h2>
+<%= link_to t('dashboard.back_to_import'), new_import_path, class: "btn btn-secondary mb-4 back-import-btn" %>
 
-<div id="dashboard" data-placeholder="<%= t('dashboard.select_show') %>">
-  <%= form_with url: dashboards_show_path, method: :get, local: true do %>
-    <div class="mb-3">
+<h2 class="dashboard-title"><%= t("dashboard.title") %></h2>
+
+<div id="dashboard" data-placeholder="<%= t('dashboard.select_show') %>" class="dashboard-container">
+  <%= form_with url: dashboards_show_path, method: :get, local: true, html: { class: "dashboard-form" } do %>
+    <div class="mb-3 dashboard-form-group">
       <%= select_tag :show_id, 
             options_for_select([[t('dashboard.all_shows'), 'all']] + Show.all.map { |s| [s.title, s.id] }, params[:show_id]), 
             include_blank: false, 
-            class: "form-control select2" %>
+            class: "form-control select2 dashboard-select" %>
     </div>
 
-    <%= submit_tag t('dashboard.filter'), class: "btn btn-primary" %>
+    <%= submit_tag t('dashboard.filter'), class: "btn btn-primary dashboard-filter-btn" %>
   <% end %>
 </div>
 
-
-<div class="mt-4">
-  <p><strong><%= t('dashboard.reservation_count') %>:</strong> <%= @reservation_count %></p>
-  <p><strong><%= t('dashboard.unique_buyers_count') %>:</strong> <%= @unique_buyers %></p>
-  <p><strong><%= t('dashboard.average_buyers_age') %>:</strong> <%= @average_age.zero? ? "N/A" : t("dashboard.years", age: @average_age) %>
-</p>
-  <p><strong><%= t('dashboard.average_show_price') %>:</strong> <%= number_to_currency(@average_price_per_perf, unit: "€") %></p>
-</div>
-
-<%= link_to t('dashboard.back_to_import'), new_import_path, class: "btn btn-secondary mt-4" %>
+<table class="mt-4 dashboard-stats-table">
+  <tbody>
+    <tr class="dashboard-stat-item">
+      <th><%= t('dashboard.reservation_count') %>:</th>
+      <td><%= @reservation_count %></td>
+    </tr>
+    <tr class="dashboard-stat-item">
+      <th><%= t('dashboard.unique_buyers_count') %>:</th>
+      <td><%= @unique_buyers %></td>
+    </tr>
+    <tr class="dashboard-stat-item">
+      <th><%= t('dashboard.average_buyers_age') %>:</th>
+      <td><%= @average_age.zero? ? "N/A" : t("dashboard.years", age: @average_age) %></td>
+    </tr>
+    <tr class="dashboard-stat-item">
+      <th><%= t('dashboard.average_show_price') %>:</th>
+      <td><%= number_to_currency(@average_price_per_perf, unit: "€") %></td>
+    </tr>
+  </tbody>
+</table>

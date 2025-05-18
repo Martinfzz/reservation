@@ -1,0 +1,57 @@
+/* Titles */
+.dashboard-title,
+.import-title,
+.preview-title {
+  text-align: center;
+  color: var(--primary-black);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+/* Form */
+.dashboard-select,
+.form-select,
+.file-input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1.5px solid #94a3b8;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-select:focus,
+.form-select:focus,
+.file-input:focus {
+  border-color: var(--primary-blue);
+  outline: none;
+  box-shadow: 0 0 6px rgba(59,130,246,0.5);
+}
+
+/* Buttons */
+.import-dashboard-btn,
+.preview-submit-btn,
+.preview-btn,
+.dashboard-filter-btn,
+.back-import-btn,
+.back-btn {
+  border: none;
+  color: white;
+  padding: 0.5rem 1.4rem;
+  border-radius: 6px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Spacing */
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
