@@ -1,6 +1,17 @@
 en:
   app_common:
     back: "Back"
+  dashboard:
+    title: "Dashboard"
+    select_show: "Select a show"
+    all_shows: "All shows"
+    filter: "Filter"
+    reservation_count: "Reservation count"
+    unique_buyers_count: "Unique buyers count"
+    average_buyers_age: "Average buyers age"
+    average_show_price: "Average show price"
+    back_to_import: "Back to import"
+    years: "%{age} years"
   imports: 
     checking_csv_columns: "Checking CSV columns"
     csv_file_import: "CSV file import"
@@ -13,3 +24,4 @@ en:
     missing_file: "Missing file"
     missing_fields: "All fields must be filled in."
     import_started: "Import started. It will be processed in the background."
+    go_to_dashboard: "Go to dashboard"
