@@ -6,9 +6,24 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
-# If running the rails server then create or migrate existing database
-if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
-  ./bin/rails db:prepare
-fi
-
-exec "${@}"
+case "$1" in
+  web)
+    echo "[entrypoint] Preparing database..."
+    ./bin/rails db:prepare
+    echo "[entrypoint] Starting Rails server..."
+    exec ./bin/thrust ./bin/rails server
+    ;;
+  sidekiq)
+    echo "[entrypoint] Starting Sidekiq..."
+    exec bundle exec sidekiq
+    ;;
+  cron)
+    echo "[entrypoint] Updating crontab with Whenever..."
+    bundle exec whenever --update-crontab
+    echo "[entrypoint] Starting cron..."
+    exec cron -f
+    ;;
+  *)
+    exec "$@"
+    ;;
+esac
