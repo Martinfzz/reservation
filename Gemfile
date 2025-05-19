@@ -41,7 +41,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "csv", require: false
-gem "sidekiq", "~> 7.0"
+gem "sidekiq", "~> 8.0"
 gem "whenever", require: false
 
 group :development, :test do
